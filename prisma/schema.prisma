@@ -4,8 +4,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
@@ -41,8 +42,8 @@ model Product {
   updatedAt   DateTime       @updatedAt
   Offer       Offer?         @relation(fields: [offerId], references: [id])
   offerId     String?
-  Cart        Cart[]
   wishList    wishList[]
+  CartItem    CartItem[]
 }
 
 model ProductImage {
@@ -75,20 +76,35 @@ model wishList {
 }
 
 model Category {
-  id       String    @id @default(uuid())
-  name     String    @unique
-  products Product[]
+  id          String        @id @default(uuid())
+  name        String        @unique
+  products    Product[]
+  subCategory subCategory[]
+}
+
+model subCategory {
+  id         String   @id @default(uuid())
+  name       String
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
 }
 
 model Cart {
-  id        String   @id @default(uuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  id        String     @id @default(uuid())
+  items     CartItem[]
+  userId    String?
+  User      User?      @relation(fields: [userId], references: [id])
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model CartItem {
+  id        String  @id @default(uuid())
+  cart      Cart    @relation(fields: [cartId], references: [id])
+  cartId    String
+  product   Product @relation(fields: [productId], references: [id])
   productId String
-  product   Product  @relation(fields: [productId], references: [id])
-  quantity  Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  quantity  Int     @default(1)
 }
 
 model Order {
