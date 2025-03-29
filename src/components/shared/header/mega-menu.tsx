@@ -1,15 +1,5 @@
 "use client";
-
 import React from "react";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
 
 const categories = [
   {
@@ -134,7 +124,7 @@ const categories = [
   },
 ];
 
-const Categories = () => {
+const MegaMenu = () => {
   const [hoveredCategory, setHoveredCategory] = React.useState<string | null>(
     null
   );
@@ -181,4 +171,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default MegaMenu;
