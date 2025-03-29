@@ -19,10 +19,10 @@ export default function ProductCard({ product }: { product: any }) {
   const [wishList, setWishList] = useState(false);
 
   return (
-    <Card className="flex-shrink-0 w-[230px] gap-1 md:w-auto md:max-w-[240px] h-auto rounded-xl shadow-lg border border-gray-200 relative">
+    <Card className="flex-shrink-0 w-[230px] gap-1 md:w-auto md:max-w-[240px] h-auto rounded-xl border border-gray-200 relative">
       <div className="absolute top-2 left-2 gap-2">
         <button
-          className=" p-1 rounded-full shadow-sm cursor-pointer"
+          className=" p-1 rounded-full  cursor-pointer"
           onClick={() => setWishList(!wishList)}
         >
           <HeartIcon

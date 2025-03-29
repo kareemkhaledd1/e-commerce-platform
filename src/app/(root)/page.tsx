@@ -1,5 +1,12 @@
 import ProductCard from "@/components/shared/product/product-card";
 import { ArrowRight } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export const products = [
   {
@@ -133,20 +140,116 @@ export const products = [
     wishList: [],
     CartItem: [],
   },
+  {
+    id: "p6",
+    name: "PlayStation 5",
+    description: "Next-gen gaming console with lightning-fast loading times.",
+    details: [
+      "AMD Zen 2 CPU",
+      "Custom RDNA 2 GPU",
+      "825GB SSD storage",
+      "4K gaming at 120fps",
+    ],
+    brand: "Sony",
+    price: 499.99,
+    discount: 0,
+    finalPrice: 499.99,
+    stock: 8,
+    categoryId: "5",
+    images: [
+      { id: "img11", url: "https://via.placeholder.com/200", productId: "p6" },
+      { id: "img12", url: "https://via.placeholder.com/200", productId: "p6" },
+    ],
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    offerId: null,
+    wishList: [],
+    CartItem: [],
+  },
+  {
+    id: "p7",
+    name: "Apple Watch Series 9",
+    description:
+      "Advanced health monitoring and connectivity in a sleek design.",
+    details: [
+      "Always-On Retina display",
+      "Blood oxygen & ECG apps",
+      "Water resistant to 50m",
+      "18-hour battery life",
+    ],
+    brand: "Apple",
+    price: 399.99,
+    discount: 5.0,
+    finalPrice: 379.99,
+    stock: 22,
+    categoryId: "6",
+    images: [
+      { id: "img13", url: "https://via.placeholder.com/200", productId: "p7" },
+      { id: "img14", url: "https://via.placeholder.com/200", productId: "p7" },
+    ],
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    offerId: null,
+    wishList: [],
+    CartItem: [],
+  },
+  {
+    id: "p8",
+    name: "Canon EOS R6 Mark II",
+    description:
+      "Professional mirrorless camera with exceptional low-light performance.",
+    details: [
+      "24.2MP full-frame CMOS sensor",
+      "In-body image stabilization",
+      "4K60p video recording",
+      "40fps continuous shooting",
+    ],
+    brand: "Canon",
+    price: 2499.99,
+    discount: 12.0,
+    finalPrice: 2199.99,
+    stock: 7,
+    categoryId: "7",
+    images: [
+      { id: "img15", url: "https://via.placeholder.com/200", productId: "p8" },
+      { id: "img16", url: "https://via.placeholder.com/200", productId: "p8" },
+    ],
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    offerId: null,
+    wishList: [],
+    CartItem: [],
+  },
 ];
 
-// Products array remains the same...
-
-export default async function Home() {
+export default function Home() {
   return (
-    <div className="">
+    <div>
+      {/* Header Section */}
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-xl sm:text-2xl font-bold">Featured Products</h1>
         <span className="text-blue-500 text-sm font-semibold cursor-pointer underline underline-offset-2">
-          view all <ArrowRight size={10} className="inline" />
+          View All <ArrowRight size={10} className="inline" />
         </span>
       </div>
-      <div className="flex overflow-x-auto gap-3 pb-4 xl:grid xl:grid-cols-5 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+
+      {/* Large Screens - Carousel */}
+      <div className="hidden xl:block">
+        <Carousel className="w-full">
+          <CarouselContent>
+            {products.map((product) => (
+              <CarouselItem key={product.id} className="basis-1/5">
+                <ProductCard product={product} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </div>
+
+      {/* Small Screens - Scrollable */}
+      <div className="flex xl:hidden overflow-x-auto gap-3 pb-4 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
