@@ -5,7 +5,7 @@ import { APP_NAME } from "@/lib/constants";
 
 export function Footer() {
   return (
-    <footer className="bg-muted">
+    <footer className="bg-muted border-t border-gray-300">
       <div className="wrapper px-4 py-5 md:px-6 md:py-8">
         <div className="grid gap-8 grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">

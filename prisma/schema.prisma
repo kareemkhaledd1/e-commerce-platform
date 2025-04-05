@@ -83,10 +83,13 @@ model Category {
 }
 
 model subCategory {
-  id         String   @id @default(uuid())
-  name       String
-  categoryId String
-  category   Category @relation(fields: [categoryId], references: [id])
+  id          String        @id @default(uuid())
+  name        String
+  categoryId  String
+  category    Category      @relation(fields: [categoryId], references: [id])
+  parentId    String?
+  parent      subCategory?  @relation("SubCategoryRelation", fields: [parentId], references: [id])
+  subCategory subCategory[] @relation("SubCategoryRelation")
 }
 
 model Cart {

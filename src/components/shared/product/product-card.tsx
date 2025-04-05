@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import p1 from "@/assets/images/p1-1.jpg";
+import p1 from "@/assets/images/iphone-15-pro.webp";
 
 import {
   Card,
@@ -15,7 +15,13 @@ import {
 import { HeartIcon, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 
-export default function ProductCard({ product }: { product: any }) {
+export default function ProductCard({
+  product,
+  limit,
+}: {
+  product: any;
+  limit?: number;
+}) {
   const [wishList, setWishList] = useState(false);
 
   return (
@@ -39,17 +45,16 @@ export default function ProductCard({ product }: { product: any }) {
         )}
       </div>
       <Link
-        href={`/product/${product.id}`}
+        href={`/product/${product.slug}`}
         className="flex flex-col h-full cursor-pointer"
       >
         <CardHeader className="flex justify-center p-4">
           <Image
-            src={p1}
+            src={product.images[0]}
             alt={product.name}
             width={150}
             height={150}
             className="rounded-md"
-            objectFit="contain"
             priority
           />
         </CardHeader>
